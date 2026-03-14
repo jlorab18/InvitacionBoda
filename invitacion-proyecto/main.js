@@ -23,15 +23,17 @@ function onYouTubeIframeAPIReady(){
 }
 
 function openInvitation(){
-  const splash = document.getElementById('splashScreen');
-  splash.classList.add('closed');
-  // Start music — playVideo called from user gesture context (works on iOS)
+  // Start music immediately from user gesture (works on iOS)
   if(ytReady && ytPlayer){
     ytPlayer.playVideo();
   } else {
     pendingPlay = true;
   }
   document.getElementById('musicToggle').classList.add('visible');
+  // Fade out splash after a brief moment so music starts first
+  setTimeout(function(){
+    document.getElementById('splashScreen').classList.add('closed');
+  }, 300);
 }
 
 function toggleMusic(){
