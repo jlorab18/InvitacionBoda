@@ -1,18 +1,38 @@
+// Splash screen → envelope → music
+let musicMuted = false;
+
+function openInvitation(){
+  const splash = document.getElementById('splashScreen');
+  splash.classList.add('closed');
+  // Start music via YouTube API
+  const player = document.getElementById('ytPlayer');
+  player.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+  // Show mute button
+  document.getElementById('musicToggle').classList.add('visible');
+}
+
+function toggleMusic(){
+  musicMuted = !musicMuted;
+  const player = document.getElementById('ytPlayer');
+  const cmd = musicMuted ? 'mute' : 'unMute';
+  player.contentWindow.postMessage('{"event":"command","func":"'+cmd+'","args":""}', '*');
+  document.getElementById('iconSoundOn').style.display = musicMuted ? 'none' : 'block';
+  document.getElementById('iconSoundOff').style.display = musicMuted ? 'block' : 'none';
+}
+
 // Envelope open animation
 let envelopeOpened = false;
 function openEnvelope(){
   if(envelopeOpened) return;
   envelopeOpened = true;
   const overlay = document.getElementById('envelopeOverlay');
-  // Split the envelope open
   overlay.classList.add('opened');
-  // Fade out and remove after animation
   setTimeout(()=>{
     overlay.classList.add('fade-out');
     document.body.style.overflow = '';
   }, 800);
 }
-// Block scroll while envelope is visible
+// Block scroll while envelope/splash is visible
 document.body.style.overflow = 'hidden';
 
 const wedding = new Date('2026-06-20T18:00:00');

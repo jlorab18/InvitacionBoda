@@ -9,13 +9,40 @@
 </head>
 <body>
 
+<!-- ══════════════ SPLASH SCREEN ══════════════ -->
+<div class="splash-screen" id="splashScreen">
+  <div class="splash-content">
+    <p class="splash-pre">Erica & Juan</p>
+    <div class="splash-line"></div>
+    <p class="splash-date">20 · 06 · 2026</p>
+    <button class="splash-btn" onclick="openInvitation()">Abrir invitación</button>
+  </div>
+</div>
+
 <!-- ══════════════ SOBRE / ENVELOPE ══════════════ -->
 <div class="envelope-overlay" id="envelopeOverlay" onclick="openEnvelope()">
-  <!-- Parte superior del sobre (se abre hacia arriba) -->
   <div class="env-top" id="envTop"></div>
-  <!-- Parte inferior del sobre (se queda) -->
   <div class="env-bottom" id="envBottom"></div>
 </div>
+
+<!-- ══════════════ MÚSICA ══════════════ -->
+<iframe id="ytPlayer" width="0" height="0" style="position:absolute;opacity:0;pointer-events:none"
+  src="https://www.youtube.com/embed/KbhclMfS0bk?enablejsapi=1&autoplay=0&loop=1&playlist=KbhclMfS0bk"
+  allow="autoplay" frameborder="0"></iframe>
+
+<!-- Botón flotante mute/unmute -->
+<button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Silenciar/Activar música">
+  <svg class="music-icon-on" id="iconSoundOn" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+  </svg>
+  <svg class="music-icon-off" id="iconSoundOff" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+    <line x1="23" y1="9" x2="17" y2="15"/>
+    <line x1="17" y1="9" x2="23" y2="15"/>
+  </svg>
+</button>
 
 <!-- ══════════════ PORTADA ══════════════ -->
 <section class="cover">
@@ -325,7 +352,7 @@
   <div class="gold-div"><div class="gold-dot"></div></div>
   <h2 class="serif-xl" style="margin-bottom:20px">Regalos</h2>
   <p class="body-copy">
-    El regalo es opcional, la asistencia obligatoria. Pero si quieres tener un detalle con nosotros, te damos algunas ideas.
+    Vuestra presencia es el mejor regalo para nosotros. Si además queréis ayudarnos a celebrar este día tan especial y aportar vuestro granito de arena a nuestra boda, podéis hacerlo aquí.
   </p>
 
   <div class="accordion">
@@ -334,10 +361,9 @@
       <span class="acc-arrow">&#x25BC;</span>
     </div>
     <div class="acc-body">
-      <p style="margin-top:10px"><strong style="color:var(--navy)">Titular:</strong> Juan Ekuna</p>
-      <p><strong style="color:var(--navy)">Banco:</strong> Sabadell</p>
-      <p><strong style="color:var(--navy)">IBAN:</strong> ES98 0081 2803 1000 0443 2450</p>
-      <p><strong style="color:var(--navy)">BIC/SWIFT:</strong> BSABESBBXXX</p>
+      <p style="margin-top:10px"><strong style="color:var(--navy)">Titular:</strong> Erica Ebuera Erimo</p>
+      <p><strong style="color:var(--navy)">IBAN:</strong> ES11 0073 0100 5108 5578 9407</p>
+      <p><strong style="color:var(--navy)">SWIFT/BIC:</strong> OPENESMM</p>
     </div>
   </div>
 

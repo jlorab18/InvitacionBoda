@@ -25,6 +25,81 @@ body{
   overflow-x:hidden;
 }
 
+/* ── SPLASH SCREEN ── */
+.splash-screen{
+  position:fixed;inset:0;z-index:10010;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#1a2d4a 0%,#2c4166 50%,#1a2d4a 100%);
+  transition:opacity .8s ease, visibility .8s ease;
+}
+.splash-screen.closed{
+  opacity:0;visibility:hidden;pointer-events:none;
+}
+.splash-content{
+  text-align:center;
+  animation:splash-fade-in 1.2s ease both;
+}
+@keyframes splash-fade-in{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.splash-pre{
+  font-family:'Playfair Display',serif;
+  font-size:36px;font-weight:400;
+  color:#ffffff;letter-spacing:2px;
+}
+.splash-line{
+  width:60px;height:1px;
+  background:var(--gold);
+  margin:18px auto;
+}
+.splash-date{
+  font-family:'Montserrat',sans-serif;
+  font-size:14px;font-weight:300;
+  color:var(--goldl);
+  letter-spacing:4px;
+  margin-bottom:36px;
+}
+.splash-btn{
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;font-weight:400;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  background:transparent;
+  border:1px solid var(--gold);
+  padding:14px 36px;
+  cursor:pointer;
+  transition:background .3s ease, color .3s ease;
+}
+.splash-btn:hover{
+  background:var(--gold);
+  color:var(--navy);
+}
+
+/* ── MUSIC TOGGLE ── */
+.music-toggle{
+  position:fixed;
+  bottom:20px;right:20px;
+  z-index:9998;
+  width:44px;height:44px;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  border:1px solid var(--border);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+  transition:transform .2s ease, box-shadow .2s ease;
+  opacity:0;visibility:hidden;
+}
+.music-toggle.visible{
+  opacity:1;visibility:visible;
+}
+.music-toggle:hover{
+  transform:scale(1.1);
+  box-shadow:0 3px 12px rgba(0,0,0,.2);
+}
+
 /* ── ENVELOPE OVERLAY ── */
 .envelope-overlay{
   position:fixed;inset:0;z-index:9999;
