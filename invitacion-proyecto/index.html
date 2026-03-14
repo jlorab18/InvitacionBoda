@@ -26,9 +26,10 @@
 </div>
 
 <!-- ══════════════ MÚSICA ══════════════ -->
-<iframe id="ytPlayer" width="0" height="0" style="position:absolute;opacity:0;pointer-events:none"
-  src="https://www.youtube.com/embed/KbhclMfS0bk?enablejsapi=1&autoplay=0&loop=1&playlist=KbhclMfS0bk"
-  allow="autoplay" frameborder="0"></iframe>
+<div id="ytPlayerWrap" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none">
+  <div id="ytPlayer"></div>
+</div>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <!-- Botón flotante mute/unmute -->
 <button class="music-toggle" id="musicToggle" onclick="toggleMusic()" title="Silenciar/Activar música">

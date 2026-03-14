@@ -1,21 +1,43 @@
-// Splash screen → envelope → music
+// Splash screen → envelope → music (YouTube IFrame Player API)
 let musicMuted = false;
+let ytReady = false;
+let ytPlayer = null;
+let pendingPlay = false;
+
+// Called automatically by YouTube IFrame API when ready
+function onYouTubeIframeAPIReady(){
+  ytPlayer = new YT.Player('ytPlayer', {
+    height:'1', width:'1',
+    videoId:'KbhclMfS0bk',
+    playerVars:{
+      autoplay:0,
+      loop:1,
+      playlist:'KbhclMfS0bk',
+      controls:0,
+      playsinline:1
+    },
+    events:{
+      onReady:function(){ ytReady = true; if(pendingPlay) ytPlayer.playVideo(); }
+    }
+  });
+}
 
 function openInvitation(){
   const splash = document.getElementById('splashScreen');
   splash.classList.add('closed');
-  // Start music via YouTube API
-  const player = document.getElementById('ytPlayer');
-  player.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-  // Show mute button
+  // Start music — playVideo called from user gesture context (works on iOS)
+  if(ytReady && ytPlayer){
+    ytPlayer.playVideo();
+  } else {
+    pendingPlay = true;
+  }
   document.getElementById('musicToggle').classList.add('visible');
 }
 
 function toggleMusic(){
+  if(!ytPlayer) return;
   musicMuted = !musicMuted;
-  const player = document.getElementById('ytPlayer');
-  const cmd = musicMuted ? 'mute' : 'unMute';
-  player.contentWindow.postMessage('{"event":"command","func":"'+cmd+'","args":""}', '*');
+  if(musicMuted){ ytPlayer.mute(); } else { ytPlayer.unMute(); }
   document.getElementById('iconSoundOn').style.display = musicMuted ? 'none' : 'block';
   document.getElementById('iconSoundOff').style.display = musicMuted ? 'block' : 'none';
 }
